@@ -10,6 +10,7 @@
 // 假设环境不允许存储 64 位整数（有符号或无符号）。
 #include <vector>
 #include <climits>
+#include <iostream>
 using namespace std;
 int reverse(int x) {
     int res = 0,i=0;
@@ -19,4 +20,11 @@ int reverse(int x) {
         x /= 10;
     }
     return res;
+}
+//test
+int main(){
+    int x = 1534236469;
+    int res = reverse(x);
+    cout<<res<<endl;
+    return 0;
 }
