@@ -13,20 +13,20 @@
 #include <iostream>
 using namespace std;
 int reverse(int x) {
-    int res = 0,i=0,newres=0,newx=x;
-    i=x%10;
-    while (x != 0) {
-        if((newres*10+x%10>INT_MAX-2e9&&i>=2)||(newres*10+x%10<INT_MIN+2e9&&i<=-2))return 0;
-        res = res * 10 + x % 10;
-        if(x!=newx)
-        newres = newres * 10+x % 10;
-        x /= 10;
-    }
-    return res;
+      int res = 0;
+        while (x != 0) {
+            int digit = x % 10;
+            // 判断 res * 10 + digit 是否会溢出
+            if (res > INT_MAX / 10 || (res == INT_MAX / 10 && digit > 7)) return 0;
+            if (res < INT_MIN / 10 || (res == INT_MIN / 10 && digit < -8)) return 0;
+            res = res * 10 + digit;
+            x /= 10;
+        }
+        return res;
 }
 //test
 int main(){
-    int x = 1534236432;
+    int x = 134236432;
     int res = reverse(x);
     cout<<res<<endl;
     return 0;
