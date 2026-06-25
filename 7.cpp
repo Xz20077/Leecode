@@ -8,8 +8,8 @@
 // 如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。
 
 // 假设环境不允许存储 64 位整数（有符号或无符号）。
-int reverse(int x) {
-    int res = 0;
+long long reverse(int x) {
+    long long res = 0;
     if (x < 0) {
         res = -res;
     }
