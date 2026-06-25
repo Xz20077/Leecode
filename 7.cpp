@@ -13,17 +13,20 @@
 #include <iostream>
 using namespace std;
 int reverse(int x) {
-    int res = 0,i=0;
+    int res = 0,i=0,newres=0,newx=x;
+    i=x%10;
     while (x != 0) {
-        if((res>INT_MAX-2e10&&x>=2)||(res<INT_MIN+2e10&&x<=-2))return 0;
+        if((newres*10+x%10>INT_MAX-2e9&&i>=2)||(newres*10+x%10<INT_MIN+2e9&&i<=-2))return 0;
         res = res * 10 + x % 10;
+        if(x!=newx)
+        newres = newres * 10+x % 10;
         x /= 10;
     }
     return res;
 }
 //test
 int main(){
-    int x = 1534236469;
+    int x = 1534236432;
     int res = reverse(x);
     cout<<res<<endl;
     return 0;
