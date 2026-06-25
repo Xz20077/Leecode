@@ -14,11 +14,9 @@ using namespace std;
 int reverse(int x) {
     int res = 0,i=0;
     while (x != 0) {
+        if((res>INT_MAX-2e10&&x>=2)||(res<INT_MIN+2e10&&x<=-2))return 0;
         res = res * 10 + x % 10;
         x /= 10;
-        if(res>INT_MAX/10||res<INT_MIN/10){
-            return 0;
-        }
     }
     return res;
 }
