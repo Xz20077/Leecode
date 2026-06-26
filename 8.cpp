@@ -18,27 +18,37 @@
 using namespace std;
 int myAtoi(string s) {
         int i=1,sum=0;
-        bool flag=false;
+        bool flag=false,flag2=false;
         for(char c:s){
             if(c=='-'&&!flag){
                 i=-1;
+                flag=true;
+                continue;
+            }
+            else if(c=='+'&&!flag){
+                flag=true;
+                continue;
+            }
+            if(c==' '&&(flag2||flag))break;
+            else if(c==' '){
                 continue;
             }
             if((c=='+'||c=='-')&&flag)break;
-            else if(c==' ')continue;
-            else if(c<='9'&&c>='0'){
-                if(sum>INT_MAX/10||(sum=INT_MAX/10&&c-'0'>7))return INT_MAX;
-                if(sum<INT_MIN/10||(sum=INT_MIN/10&&c-'0'>8))return INT_MIN;
+ 
+            if(c<='9'&&c>='0'){
+                if(sum>INT_MAX/10||(sum==INT_MAX/10&&c-'0'>7))return INT_MAX;
+                if(sum<INT_MIN/10||(sum==INT_MIN/10&&c-'0'>8))return INT_MIN;
                 sum=sum*10+i*(c-'0');
                 flag=true;
+                flag2=true;
             }
-            else break;
+            else break;//处理字母
         }
         return sum;
     }
 //test
 int main(){
-    string s = "-42";
+    string s = "+-12";
     int res = myAtoi(s);
     cout<<res<<endl;
     return 0;
